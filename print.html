@@ -1,0 +1,808 @@
+<!DOCTYPE HTML>
+<html lang="pt-br" class="sidebar-visible no-js rust">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Qualifying Software Engineers Undergraduates in DevOps</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="1_Introdução/index.html"><strong aria-hidden="true">1.</strong> 1. Introdução</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="1_Introdução/2021-2.html"><strong aria-hidden="true">1.1.</strong> 2021-2</a></li><li class="chapter-item "><a href="1_Introdução/2022-2-primeiras-semanas.html"><strong aria-hidden="true">1.2.</strong> 2022-2-Primeiras-Semanas</a></li><li class="chapter-item "><a href="1_Introdução/2022-2.html"><strong aria-hidden="true">1.3.</strong> 2022-2</a></li></ol></li><li class="chapter-item expanded "><a href="2-blog-posts/index.html"><strong aria-hidden="true">2.</strong> 2-Blog-Posts</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="2-blog-posts/Scrum.html"><strong aria-hidden="true">2.1.</strong> Scrum</a></li><li class="chapter-item "><a href="2-blog-posts/aprender.html"><strong aria-hidden="true">2.2.</strong> Aprender</a></li><li class="chapter-item "><a href="2-blog-posts/sindromeDoHeroi.html"><strong aria-hidden="true">2.3.</strong> Sindromedoheroi</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Qualifying Software Engineers Undergraduates in DevOps</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/fga-eps-mds/Qualifying-Software-Engineers-Undergraduates-in-DevOps/ebook" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="1-introdução"><a class="header" href="#1-introdução">1. Introdução</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="plano-de-ensino"><a class="header" href="#plano-de-ensino">Plano de Ensino</a></h1>
+<p>O plano de Ensino está disponibilizado <a href="https://github.com/fga-eps-mds/A-Disciplina-MDS-EPS/blob/master/PlanosDeEnsino/MDS_plano_ensino%20-%20Carla.md">aqui</a></p>
+<h1 id="organização-da-disciplina"><a class="header" href="#organização-da-disciplina">Organização da Disciplina</a></h1>
+<ul>
+<li>
+<p>Organização do Github com todos os projetos já desenvolvidos -  <a href="https://github.com/fga-eps-mds/">https://github.com/fga-eps-mds/</a></p>
+</li>
+<li>
+<p>Material didático de apoio (aulas, material teórico e tutoriais feito pelos alunos) - <a href="https://github.com/fga-eps-mds/A-Disciplina-MDS-EPS">https://github.com/fga-eps-mds/A-Disciplina-MDS-EPS</a></p>
+</li>
+<li>
+<p>Videos com o material assincrono da disciplina - <a href="https://www.youtube.com/channel/UC6VgsVODs17IAHuWF2HCfUQ">Canal Youtube</a></p>
+</li>
+</ul>
+<h1 id="projetosgrupos"><a class="header" href="#projetosgrupos">Projetos/Grupos</a></h1>
+<p>O tema do semestre é Visualização de dados. Todos os projetos possuem um contexto específico, com o objetivo comum à todos os projetos de criar indicadores a partir dos dados e apresentar para o usuário.</p>
+<p>São três projetos e cada projeto é composto por até 3 squads. Cada squad tem um tech lead, product Owner/Manager, DevOps, Arquiteto, e desenvolvedores. </p>
+<h2 id="indicadores-sigaa"><a class="header" href="#indicadores-sigaa">Indicadores SIGAA</a></h2>
+<ul>
+<li>Projeto <a href="https://github.com/fga-eps-mds/2021.2-INDICAA">Indicaa</a></li>
+</ul>
+<h2 id="indicadores-alunos-unb"><a class="header" href="#indicadores-alunos-unb">Indicadores Alunos UnB</a></h2>
+<ul>
+<li><a href="https://github.com/fga-eps-mds/2021.2-Sigaa-Plus">Projeto SigaPlus</a></li>
+</ul>
+<h2 id="indicadores-brasilio"><a class="header" href="#indicadores-brasilio">Indicadores Brasil.io</a></h2>
+<p><a href="https://github.com/fga-eps-mds/Tema03-timeb">Projeto Brasilio</a></p>
+<h1 id="critérios-de-avaliação"><a class="header" href="#critérios-de-avaliação">Critérios de Avaliação</a></h1>
+<ul>
+<li>Três categorias de avaliação: &quot;iniciante&quot;, &quot;saudável&quot;, &quot;maduro&quot; e três aspectos de avaliação: &quot;Código&quot;, &quot;Equipe&quot; e &quot;Projeto&quot;</li>
+</ul>
+<h2 id="etapa-iniciante"><a class="header" href="#etapa-iniciante">Etapa Iniciante</a></h2>
+<ul>
+<li>peso: 20%</li>
+<li>Código
+<ul>
+<li>repositório configurado</li>
+<li>licença de software</li>
+<li>ambiente de desenvolvimento configurado</li>
+</ul>
+</li>
+<li>Equipe
+<ul>
+<li>atribuições de papéis</li>
+<li>standup e mobs iniciais rolando</li>
+<li>ambiente de trabalho informativo criado (Github)</li>
+<li>definida política de horas extras</li>
+<li>planilha para controle de horas trabalhadas</li>
+<li>execução dos rituais do scrum</li>
+</ul>
+</li>
+<li>Projeto
+<ul>
+<li>meio de comunicação definido</li>
+<li>Documentos do projeto revisados</li>
+</ul>
+</li>
+</ul>
+<h2 id="etapa-saudável"><a class="header" href="#etapa-saudável">Etapa Saudável</a></h2>
+<ul>
+<li>peso: 30%</li>
+<li>Código
+<ul>
+<li>commits frequentes</li>
+<li>início testes</li>
+<li>início pipeline de CI/CD (testes + entregável)
+-Equipe</li>
+<li>bom rodízio de pares</li>
+<li>consistência em mobs</li>
+<li>Planejamento maduro</li>
+<li>Velocity estável</li>
+<li>Métricas de produtividade equilibada</li>
+<li>Comunicação efetiva</li>
+</ul>
+</li>
+<li>Projeto
+<ul>
+<li>boa comunicação </li>
+<li>ter feito a primeira entrega</li>
+<li>Ambiente de homologação </li>
+</ul>
+</li>
+</ul>
+<h2 id="etapa-maduro"><a class="header" href="#etapa-maduro">Etapa Maduro</a></h2>
+<ul>
+<li>peso: 50%</li>
+<li>Código
+<ul>
+<li>tracking</li>
+<li>testes automatizados</li>
+<li>cobertura de testes</li>
+<li>pipeline de CI/CD (testes + entregável)</li>
+<li>artefatos para continuidade do projeto</li>
+</ul>
+</li>
+<li>Equipe
+<ul>
+<li>TDD</li>
+<li>auto organização (&quot;coach invisível&quot;)</li>
+</ul>
+</li>
+<li>Projeto
+<ul>
+<li>demais entregas  (funcionalidades implementadas + manutenibilidade - como outra equipe pode continuar o projeto)</li>
+</ul>
+</li>
+</ul>
+<p>Obs.: Por manutenibilidade entende-se documentação sobre como ter um ambiente de desenvolvimento completo com os testes passando, ponteiros para pontos interessantes no código para novos contribuidores, e funcionalidades mais simples para estes implementarem enquanto conhecem o sistema.</p>
+<h1 id="aulas"><a class="header" href="#aulas">Aulas</a></h1>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center">Data</th><th style="text-align: center">Dia da Semana</th><th>Aula</th></tr></thead><tbody>
+<tr><td style="text-align: center">18/01/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 0 - Aula 01 Planejamento sprint 0 Apresentação da disciplina Definição da dinâmica do curso Iniciar os treinamentos (git, ágil, documentos)</td></tr>
+<tr><td style="text-align: center">20/01/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 0 - Aula 2 Ciclo de projeto Apresentação dos Projetos Aula: Revisão de Git https://education.github.com/git-cheat-sheet-education.pdf</td></tr>
+<tr><td style="text-align: center">25/01/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 01 - Aula 01 Planejamento Sprint 1 Definição dos projetos Iniciar a definição de escopo do projeto (Roadmap, documento de visão, EAP, TAP) - Estudar documento de arquitetura</td></tr>
+<tr><td style="text-align: center">27/01/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 01 - Aula 02 Modelos de processo Métodos ágeis Planejamento ágil Material assincrono: https://youtu.be/OzTGRO7UGyY Material assincrono: https://youtu.be/WiRwKm9M5w8</td></tr>
+<tr><td style="text-align: center">01/02/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 02 - Aula 01 Planejamento Sprint 02  Scrum/Kanban/spotify Papéis, artefatos, rituais Documentos: planning sprint/review sprint/issues Revisar escopo projeto, iniciar documento de Arquitetura, escolha tecnológica. Treinamento papéis, Aula assincrona: https://youtu.be/NoGhC1LaaAE https://youtu.be/Q3MxVo9zdvU</td></tr>
+<tr><td style="text-align: center">03/02/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 02 - Aula 02 Requisitos ágeis (Épicos, features, História de usuário, task, bugs) Artefatos: EAP, Documento de Visão, Backlog de produto, Backlog da sprint, documento de requisitos funcionais/não funcionais Treinamento: uso do zenhub Slide da aula: https://docs.google.com/presentation/d/1P2-Odi4s-IZ2-OGN9Xqcb5ngqczZDBszqi4w8swawhE/edit?usp=sharing Material complementar (Design com olhar disruptivo): https://youtu.be/vlbB0xYRulQ</td></tr>
+<tr><td style="text-align: center">08/02/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 03 aula 01 Show me the code Grupos apresentarem documentação</td></tr>
+<tr><td style="text-align: center">10/02/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 03 - Aula 02 Arquitetura de software Components, Camadas, diagramas UMLs Documentos: documento de arquitetura, pipeline Material assíncrono: https://youtu.be/oCjZNteAvg0 https://youtu.be/RCnmxKZjIQM  Material de estudo: https://martinfowler.com/architecture/</td></tr>
+<tr><td style="text-align: center">15/02/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 04 - Aula 01 Controle de versão e desenvolvimento colaborativo Gitflow https://about.gitlab.com/images/press/git-cheat-sheet.pdf https://docs.gitlab.com/ee/topics/gitlab_flow.html</td></tr>
+<tr><td style="text-align: center">17/02/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 04 - Aula 02 Política de Branches - aprendendo o fluxo de colaboração - Pull request, merge request, revisão, papel mantenedor. https://github.com/fga-eps-mds/Qualifying-Software-Engineers-Undergraduates-in-DevOps/issues/24</td></tr>
+<tr><td style="text-align: center">22/02/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 05 - Aula 01 Papéis ágeis - Scrum master Produtividade, métricas ágeis (retrospectiva, burndown, velocity, quadro de conhecimento, health check), maturidade das práticas (comunicação nas issues/PRs, rituais time box, pareamento)</td></tr>
+<tr><td style="text-align: center">24/02/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 05 - aula 02 Controle de Versão e Integração Contínua Isolamento de ambiente Aula Assíncrona:  https://www.youtube.com/watch?v=-Vui7mdYkgk&amp;t=1920s https://www.youtube.com/watch?v=FBrUzyKviJw</td></tr>
+<tr><td style="text-align: center">01/03/2022</td><td style="text-align: center">Terça-feira</td><td>Início Sprint 06 Feriado</td></tr>
+<tr><td style="text-align: center">03/03/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 06 - aula 02 Entrega Release O que é release - Release Train Release notes - https://github.com/RocketChat/Rocket.Chat/releases/tag/4.5.0 Material de Apoio - https://www.thoughtworks.com/en-br/radar/techniques/release-train https://www.scaledagileframework.com/agile-release-train/</td></tr>
+<tr><td style="text-align: center">08/03/2022</td><td style="text-align: center">Terça-feira</td><td>Release 01 Vídeo por projeto (Máx 4 minutos) Vídeo por squad (Max 4 minutos)</td></tr>
+<tr><td style="text-align: center">10/03/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 06 - aula 02 Soft Skills - agilista - agile brazil Slides - https://drive.google.com/file/d/1L01HuKcFPueg6wPwlPdCHgPWN8MQe7nk/view?usp=sharing</td></tr>
+<tr><td style="text-align: center">15/03/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 07 - aula 01 Síncrona - 10 min Início Sprint</td></tr>
+<tr><td style="text-align: center">17/03/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 07 - aula 02 Extreme Programming (XP) O que é? Práticas (programação pareada, testes automatizados, testes unitários, integração) Slides: https://www.slideshare.net/hotpop/introduo-programao-extrema-extreme-programming-xp</td></tr>
+<tr><td style="text-align: center">22/03/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 08 -Aula 01 Início Sprint</td></tr>
+<tr><td style="text-align: center">24/03/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 08 - Aula 02 Testes Testes unitários Testes integração Teste aceitação Testes automatizados práticas de testes - TDD + pair programming Git colaborativo práticas de  Gerência de Configuração</td></tr>
+<tr><td style="text-align: center">29/03/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 09 - Aula 01 Síncrona - Avisos Planning - trabalho dos grupos</td></tr>
+<tr><td style="text-align: center">31/03/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 09 - Aula 02 Qualidade de software Qualidade estática de software Clean Code/SOLID Code climate, LINT</td></tr>
+<tr><td style="text-align: center">05/04/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 10 - Aula 01 Síncrona - Avisos Início Sprint</td></tr>
+<tr><td style="text-align: center">07/04/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 10 - Aula 02 Pipeline de Integração Stages Build automatizada Testes automatizados qualidade de software deploy</td></tr>
+<tr><td style="text-align: center">12/04/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 11 - Aula 01 Síncrona - Avisos Início Sprint</td></tr>
+<tr><td style="text-align: center">14/04/2022</td><td style="text-align: center">Quinta-feira</td><td>Sprint 11 - aula 02 Aula: Licenças de software livre Copyright, patentes e aspectos legais Outros modelos de processo Cascata / RUP</td></tr>
+<tr><td style="text-align: center">19/04/2022</td><td style="text-align: center">Terça-feira</td><td>Sprint 12 - aula 01 Início Sprint</td></tr>
+<tr><td style="text-align: center">21/04/2022</td><td style="text-align: center">Quinta-feira</td><td>Feriado</td></tr>
+<tr><td style="text-align: center">26/04/2022</td><td style="text-align: center">Terça-feira</td><td>Release 02 - MVP - Poc</td></tr>
+<tr><td style="text-align: center">28/04/2022</td><td style="text-align: center">Quinta-feira</td><td>Retrospectiva Disciplina</td></tr>
+<tr><td style="text-align: center">03/05/2022</td><td style="text-align: center">Terça-feira</td><td></td></tr>
+<tr><td style="text-align: center">05/05/2022</td><td style="text-align: center">Quinta-feira</td><td>Entrega notas final - revisão</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="guia-das-primeiras-semanas"><a class="header" href="#guia-das-primeiras-semanas">Guia das primeiras semanas</a></h1>
+<p>As primeiras semanas da disciplinas são as mais confusas, complexas e umas das mais importante.
+Vocês não sabem exatamente o que tem que ser feito, como tem que ser feito, e o que é esperado. Acreditem que faz parte da experiência. Esse documento tenta trazer um guiar para fazer bem as primeiras semanas.</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Dinâmicas para conhecer todos os membros do time </li>
+<li><input disabled="" type="checkbox"/>
+Mapeamento das habilidades e dificuldades de cada pessoa do time</li>
+<li><input disabled="" type="checkbox"/>
+Estudos em pares nos seguintes temas: Scrum, papéis/habilidades ágeis (Scrum master, Product Owner, Arquiteto/DevOps), documentos de projeto de software (Documento de Visão, Documento de arquitetura, TAP), documentos ageis (issue, pull request, documento de sprint)</li>
+<li><input disabled="" type="checkbox"/>
+Treinamentos - configuração de ambiente (intalação de git, etc), uso de principais comandos git, treinamento práticas ágeis. Podem pedir para algum monitor dar o treinamento, ou alguém do time prepara o treinamento.</li>
+</ul>
+<h2 id="conhecendo-o-time"><a class="header" href="#conhecendo-o-time">Conhecendo o time</a></h2>
+<p>No mercado de trabalho, nós não escolhemos com quem vamos trabalhar. Então se não estiver no time que gostaria, é uma ótima experiência para testar seu profissionalismo no ambiente de trabalho. </p>
+<p>Antes de começar o trabalho mão na massa, é importante que as pessoas do time sintam a vontade de se expressar, e que verbalizem as expectativas, limitações e frustrações. Então, na primeira semana na disciplina, dediquem tempo para conhecer as pessoas do seu time, ver o perfil de cada um (gosta de programar, fazer interface, sonha em mexer com dados, ja sabe programar em python etc), mapear as expectativas individuais na carreira de engenharia de software, compartilhar os medos/inseguranças em relação à disciplina\faculdade, e dificuldades individuais. Essas conversas iniciais são muito importantes! Todas as pessoas devem falar, sentir parte do grupo, e devem agregar Todas as pessoas no time e criar uma expectativa coletiva.</p>
+<p>Pra que essas conversas iniciais são importantes? Primeiro estamos trabalhando com pessoas, com usas histórias, seus sonhos e suas restrições. Conhecer as pessoas nos faz entender que cada uma vai dedicar o máximo possivel, dentro das suas limitações, para o sucesso do grupo. Vão perceber que o sumiço de um membro pode estar relacionado a questões muito mais complexas (muito raramente é por ser migué), e saber da historia de cada um nos faz compreender que as dedicações não são uniformes e ajudar os colegas de time em momentos de dificuldade.</p>
+<h2 id="estudo-em-pares"><a class="header" href="#estudo-em-pares">Estudo em Pares</a></h2>
+<p>Uma das grandes práticas ágeis que vamos trabalhar no semestre é o pareamento. Nessa prática, todas as tarefas a serem realizadas no projeto são feita por dois integrantes. Trabalhar em dupla pode parecer contra produtivo em um primeiro momento (se cada pessoa ficasse com uma tarefa parece que teria mais tarefas entregues), mas estudos mostram que trabalhar em dupla, além de ter revisão do que é feito, é uma forma de trocar conhecimento, aumenta a qualidade da tarefa entregue, e é mais produtivo. </p>
+<p>Por isso, todas as tarefas devem ser realizadas por duplas no time/squad. </p>
+<h2 id="encontros"><a class="header" href="#encontros">Encontros</a></h2>
+<p>Desde a primeira semana, o time deve fazer reuniões de planejamento, com o objetivo de levantar as atividades a serem realizadas na semana e quem é o responsável para realizar as tarefas. </p>
+<p>Nas primeiras semanas, as tarefas são exclusivamente de estudos, e treinamentos. Estudos e treinamento incluem:
+Scrum, papéis/habilidades ágeis (Scrum master, Product Owner, Arquiteto/DevOps), documentos de projeto de software (Documento de Visão, Documento de arquitetura, TAP), documentos ageis (issue, pull request, documento de sprint).</p>
+<p>Além das reuniões de planejamento, precisam marcar reuniões para discutir o escopo do software que vocês gostariam de desenvolver - funcionalidades (login, x, etc), e as tecnologias que vcs gostariam de usar (python, etc). </p>
+<p>Ao final da semana, deve ter uma reunião para que cada membro do time entregue o que foi desenvolvido na semana. Chamamos essa reunião de Review. O objetivo é que todos saibam o que foi finalizado, o que está pendente, e o que não foi finalizado. Com essa reunião, terão as informações necessárias para fazer o planejamento de um novo ciclo semanal.</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Reunião Semanal de planejamento</li>
+<li><input disabled="" type="checkbox"/>
+Reunião semanal de revisão/entrega (review)</li>
+<li><input disabled="" type="checkbox"/>
+Reuniões focadas técnicos sobre o projeto (com temas definidos).</li>
+</ul>
+<h2 id="treinamentos"><a class="header" href="#treinamentos">Treinamentos</a></h2>
+<p>O início do semestre deve ser dedicado à estudos e treinamentos. O que isso quer dizer? normalmente uma dupla/pessoa estuda um conceito/tecnologia/prática e confecciona o material para capacitar o restante do time. </p>
+<p>O material dos treinamentos podem ser links para tutoriais com boa qualidade, apresentação utilizada no treinamento. Deve-se garantir que ao final do treinamento, todos os membros da equipe tenham conhecimento necessário para que consiga aplicar no contexto do projeto.</p>
+<p>Todos os treinamentos devem ser planejados e registrados nas issues.</p>
+<p>Treinamentos a serem realizados:</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Métodos ágeis - o que são métodos ágeis, o que é Scrum e as práticas do Scrum</li>
+<li><input disabled="" type="checkbox"/>
+Configuração de ambiente - instalar bibliotecas/ferramentas necessárias para o projeto. Instalando linux, git, pip, etc.</li>
+<li><input disabled="" type="checkbox"/>
+Git - o que é, quais são os principais comandos (clone, push, pull, commit, add, remove)</li>
+<li><input disabled="" type="checkbox"/>
+Github - práticas das issue (Criar issue, comentar issues etc), documentação (markdown, estrutura pastas etc), pull request, branches</li>
+<li><input disabled="" type="checkbox"/>
+Gitpage - reaproveitar tema/estrutura de outro time, etc.</li>
+</ul>
+<h2 id="registro-de-horas-trabalhadas"><a class="header" href="#registro-de-horas-trabalhadas">Registro de Horas Trabalhadas</a></h2>
+<p>Vocês devem controlar em um primeiro momento o tempo de dedicação em horas de cada membro do time. Para isso, toda vez que um participante trabalha para o projeto, monitora o tempo dedicado e registra em um local que o time definiu (planilha de horas compartilhada, algum software etc)</p>
+<p>Exemplo de Planilha - https://www.coalize.com.br/planilha-horas-trabalhadas</p>
+<h2 id="documentação"><a class="header" href="#documentação">Documentação</a></h2>
+<p>Todo o trabalho realizado deve ser registrado no repositório github do projeto. </p>
+<p>A documentação das tarefas deve ser feito por meio de issues no github. Cada participante deve ter, pelo menos, 1 issue alocada (assign).</p>
+<p>Deve ter também documentação do planejamento e revisão da sprint.</p>
+<h1 id="ponteiros"><a class="header" href="#ponteiros">Ponteiros</a></h1>
+<p>Ler os post mortem dos outros grupos dos semestres anteriores. O documento post mortem é um documento com o objetivo de deixar as lições aprendidas, o que fizeram errado, o que foi importante pra eles, o que eles dariam de conselhos para vocês. Aproveitem esse material para entender mais a disciplina, o que é esperado de você, como gerir bem seu tempo e se organizar pra disciplina. </p>
+<h2 id="semestre-anterior"><a class="header" href="#semestre-anterior">Semestre anterior</a></h2>
+<ul>
+<li><a href="https://fga-eps-mds.github.io/GFour-Invext/#/pages/postmortem">GInvest</a></li>
+<li><a href="https://fga-eps-mds.github.io/2022-1-OiaAMoeda/#/Docs/Post_mortem">OiaMoeda</a></li>
+<li><a href="https://fga-eps-mds.github.io/2022-1-PokeRanking/Documenta%C3%A7%C3%A3o/post-mortem/">PokerRanking</a></li>
+<li><a href="https://fga-eps-mds.github.io/CollegeFlow/#/postmortem">CollegeFlow</a></li>
+</ul>
+<h2 id="outros-semestres"><a class="header" href="#outros-semestres">Outros semestres</a></h2>
+<ul>
+<li><a href="https://fga-eps-mds.github.io/2020.2-Anunbis/post_mortem/">Annubis</a></li>
+<li><a href="https://fga-eps-mds.github.io/2019.2-Acacia/#/postmortem">Acacia</a></li>
+</ul>
+<h1 id="tutoriais"><a class="header" href="#tutoriais">Tutoriais</a></h1>
+<p><a href="https://github.com/kamranahmedse/developer-roadmap">Web Developer Roadmap</a>
+<a href="https://github.com/dexteryy/spellbook-of-modern-webdev">Spellbook of Modern WebDev</a>
+<a href="https://github.com/donnemartin/system-design-primer">System Design Primer</a></p>
+<h1 id="ferramentas"><a class="header" href="#ferramentas">Ferramentas</a></h1>
+<h1 id="referências"><a class="header" href="#referências">Referências</a></h1>
+<h2 id="engenharia-de-software"><a class="header" href="#engenharia-de-software">Engenharia de Software</a></h2>
+<p><a href="https://engsoftmoderna.info">Engenharia de Software Moderna</a></p>
+<p><a href="https://www.goodreads.com/book/show/4845.Code_Complete">Code Complete [Steve McConnell] </a></p>
+<p><a href="https://www.goodreads.com/book/show/3735293-clean-code">Clean Code: A Handbook of Agile Software Craftsmanship [Uncle Bob]</a></p>
+<p><a href="https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer">The Pragmatic Programmer: From Journeyman to Master [Andy Hunt, Dave Thomas]</a></p>
+<h2 id="arquitetura-de-software"><a class="header" href="#arquitetura-de-software">Arquitetura de Software</a></h2>
+<p><a href="https://www.goodreads.com/book/show/18043011-clean-architecture">Clean Architecture [Uncle Bob]</a></p>
+<p><a href="https://www.goodreads.com/book/show/35755822-building-evolutionary-architectures">Building Evolutionary Architectures: Support Constant Change [Neal Ford, Rebecca Parsons, Patrick Kua] </a></p>
+<h2 id="microsserviços"><a class="header" href="#microsserviços">Microsserviços</a></h2>
+<p><a href="https://www.goodreads.com/book/show/22512931-building-microservices">Building Microservices: Designing Fine-Grained Systems [Sam Newman]</a></p>
+<h2 id="design"><a class="header" href="#design">Design</a></h2>
+<p><a href="https://ebooks.webflow.com/ebook/the-modern-web-design-process">The Modern Web Design Process [Jeff Cardello, John M. Williams]</a></p>
+<h2 id="métodos-Ágeis"><a class="header" href="#métodos-Ágeis">Métodos Ágeis</a></h2>
+<p><a href="http://blog.crisp.se/wp-content/uploads/2012/11/SpotifyScaling.pdf">Scaling Agile @ Spotify with Tribes, Squads, Chapters &amp; Guilds [Henrik Kniberg, Anders Ivarsson]</a></p>
+<p><a href="https://www.goodreads.com/book/show/142783.Software_Engineering">Software Engineering: A Practitioner's Approach</a></p>
+<p><a href="https://www.goodreads.com/book/show/33870635-kanban-em-10-passos">Kanban em 10 passos [Jesper Boeg]</a></p>
+<p><a href="https://www.goodreads.com/book/show/18174.Extreme_Programming_Applied">Extreme Programming Explained: Embrace Change [ Kent Beck, Cynthia Andres]</a></p>
+<h2 id="devops"><a class="header" href="#devops">DevOps</a></h2>
+<p><a href="https://www.goodreads.com/book/show/26083308-the-devops-handbook">The DevOps Handbook [Gene Kim, Jez Humble, Patrick Debois, John Willis]</a></p>
+<p><a href="https://www.goodreads.com/book/show/27968891-site-reliability-engineering">Site Reliability Engineering: How Google Runs Production Systems [Betsy Beyer, Chris Jones, Jennifer Petoff, Niall Murphy]</a></p>
+<p><a href="https://www.goodreads.com/book/show/39080433-accelerate">Accelerate: The Science of Lean Software and DevOps [Nicole Forsgren, Jez Humble, Gene Kim]</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="plano-de-ensino-1"><a class="header" href="#plano-de-ensino-1">Plano de Ensino</a></h1>
+<p>O plano de Ensino está disponibilizado <a href="https://github.com/fga-eps-mds/A-Disciplina-MDS-EPS/blob/master/PlanosDeEnsino/MDS_plano_ensino%20-%20Carla.md">aqui</a></p>
+<h1 id="organização-da-disciplina-1"><a class="header" href="#organização-da-disciplina-1">Organização da Disciplina</a></h1>
+<ul>
+<li>
+<p>Organização do Github com todos os projetos já desenvolvidos -  <a href="https://github.com/fga-eps-mds/">https://github.com/fga-eps-mds/</a></p>
+</li>
+<li>
+<p>Material didático de apoio (aulas, material teórico e tutoriais feito pelos alunos) - <a href="https://github.com/fga-eps-mds/A-Disciplina-MDS-EPS">https://github.com/fga-eps-mds/A-Disciplina-MDS-EPS</a></p>
+</li>
+<li>
+<p>Videos com o material assincrono da disciplina - <a href="https://www.youtube.com/channel/UC6VgsVODs17IAHuWF2HCfUQ">Canal Youtube</a></p>
+</li>
+</ul>
+<h1 id="projetosgrupos-1"><a class="header" href="#projetosgrupos-1">Projetos/Grupos</a></h1>
+<p>O tema do semestre é Visualização de dados. Para isso, precisamos de DADOS!! As equipes, ou squads, são compostas por até 8 integrantes, serão responsável pela Extração de Dados (Webscraping), pelo armazenamentos dos dados (bancos de dados) e pela apresentação/processamento dos dados.</p>
+<p>Quais são as fontes dos dados? Vocês escolhem.. pode ser requisição de uma API, pode ser via webscraping, pode ser fazendo a copia de um banco de dados. Alguns contextos interessantes: Brasil.io, o proprio Siga da unb, dados de saúde, etc. </p>
+<p>Cada grupo deve definir o seu próprio escopo.</p>
+<h1 id="apresentações"><a class="header" href="#apresentações">Apresentações</a></h1>
+<ul>
+<li>Release 1 (major) - 10 de dezembro de 2022</li>
+<li>Release 2 (major) - 26 de janeiro de 2022</li>
+</ul>
+<h2 id="release-i"><a class="header" href="#release-i">Release I</a></h2>
+<ul>
+<li>
+<p><strong>A Release 1</strong> A ordem de apresentacao é sorteada, mas os grupos sao podem trocar entre si a ordem. </p>
+</li>
+<li>
+<p><strong>Peso da R1</strong> - 40% da nota de projeto</p>
+</li>
+<li>
+<p><strong>Tempo de apresentação</strong>: 15 minutos </p>
+</li>
+<li>
+<p><strong>Artefatos avaliados</strong>: (I) Documento de Visão do Projeto, (II) Planejamento/Comunicação Interna e Externa (agenda de trabalho + ferramentas), Documento de Arquitetura do Projeto, (III) Especificação das historias de usuários (critérios de aceitação), (IV) Configuração do repositório de acordo com os padrões de comunidade de software livre (Github), (V) Wiki atualizada (VI) Protótipo de alta fidelidade </p>
+</li>
+<li>
+<p><strong>Praticas avaliadas</strong>: pareamento, produtividade, participação nos rituais, desempenho</p>
+</li>
+<li>
+<p><strong>Detalhamento da avaliação</strong>: Código-Fonte/entregas (30%), (II) Coerência entre a documentação e implementação (10%), (III) Documentação: Doc. visão (15%), doc arq (15%), Requisitos Especificados (10%), Protótipo (10%), (IV) critério extra(10%)</p>
+</li>
+</ul>
+<h2 id="release-ii"><a class="header" href="#release-ii">Release II</a></h2>
+<ul>
+<li>
+<p><strong>A Release 2</strong>  A ordem de apresentacao é sorteada, mas os grupos sao podem trocar entre si a ordem. </p>
+</li>
+<li>
+<p><strong>Peso da R2</strong> - 60% da nota de projeto</p>
+</li>
+<li>
+<p><strong>Tempo de apresentacao</strong>: 15 minutos </p>
+</li>
+<li>
+<p><strong>Detalhe da avaliacao</strong>:  (I) Codigo-fonte entregue (60%): features, implantacao, qualidade, cobertura de testes, testes de aceitacao, (II) documentação/evidências da execução metodologia de desenvolvimento contínua (30%), (III) Tracking (10%)</p>
+</li>
+</ul>
+<h1 id="critérios-de-avaliação-1"><a class="header" href="#critérios-de-avaliação-1">Critérios de Avaliação</a></h1>
+<p>Os critérios de avaliação estão detalhados no plano e ensino <a href="https://github.com/fga-eps-mds/A-Disciplina-MDS-EPS/blob/master/PlanosDeEnsino/MDS_plano_ensino%20-%20Carla.md">aqui</a>. </p>
+<p>As notas são dadas em cada critério a partir do nível de maturidade individual na disciplina, de acordo com as três categorias abaixo:</p>
+<ul>
+<li>Três categorias de avaliação: &quot;iniciante&quot;, &quot;saudável&quot;, &quot;maduro&quot; e três aspectos de avaliação: &quot;Código&quot;, &quot;Equipe&quot; e &quot;Projeto&quot;</li>
+</ul>
+<h2 id="etapa-iniciante-1"><a class="header" href="#etapa-iniciante-1">Etapa Iniciante</a></h2>
+<ul>
+<li>peso: 20%</li>
+<li>Código
+<ul>
+<li>repositório configurado</li>
+<li>licença de software</li>
+<li>ambiente de desenvolvimento configurado</li>
+</ul>
+</li>
+<li>Equipe
+<ul>
+<li>atribuições de papéis</li>
+<li>standup e mobs iniciais rolando</li>
+<li>ambiente de trabalho informativo criado (Github)</li>
+<li>definida política de horas extras</li>
+<li>planilha para controle de horas trabalhadas</li>
+<li>execução dos rituais do scrum</li>
+</ul>
+</li>
+<li>Projeto
+<ul>
+<li>meio de comunicação definido</li>
+<li>Documentos do projeto revisados</li>
+</ul>
+</li>
+</ul>
+<h2 id="etapa-saudável-1"><a class="header" href="#etapa-saudável-1">Etapa Saudável</a></h2>
+<ul>
+<li>peso: 30%</li>
+<li>Código
+<ul>
+<li>commits frequentes</li>
+<li>início testes</li>
+<li>início pipeline de CI/CD (testes + entregável)
+-Equipe</li>
+<li>bom rodízio de pares</li>
+<li>consistência em mobs</li>
+<li>Planejamento maduro</li>
+<li>Velocity estável</li>
+<li>Métricas de produtividade equilibada</li>
+<li>Comunicação efetiva</li>
+</ul>
+</li>
+<li>Projeto
+<ul>
+<li>boa comunicação </li>
+<li>ter feito a primeira entrega</li>
+<li>Ambiente de homologação </li>
+</ul>
+</li>
+</ul>
+<h2 id="etapa-maduro-1"><a class="header" href="#etapa-maduro-1">Etapa Maduro</a></h2>
+<ul>
+<li>peso: 50%</li>
+<li>Código
+<ul>
+<li>tracking</li>
+<li>testes automatizados</li>
+<li>cobertura de testes</li>
+<li>pipeline de CI/CD (testes + entregável)</li>
+<li>artefatos para continuidade do projeto</li>
+</ul>
+</li>
+<li>Equipe
+<ul>
+<li>auto organização (&quot;coach invisível&quot;)</li>
+</ul>
+</li>
+<li>Projeto
+<ul>
+<li>demais entregas  (funcionalidades implementadas + manutenibilidade - como outra equipe pode continuar o projeto)</li>
+</ul>
+</li>
+</ul>
+<p>Obs.: Por manutenibilidade entende-se documentação sobre como ter um ambiente de desenvolvimento completo com os testes passando, ponteiros para pontos interessantes no código para novos contribuidores, e funcionalidades mais simples para estes implementarem enquanto conhecem o sistema.</p>
+<h1 id="aulas-1"><a class="header" href="#aulas-1">Aulas</a></h1>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center">Data</th><th style="text-align: center">Dia da Semana</th><th>Aula</th></tr></thead><tbody>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 0 - Aula 01 Planejamento sprint 0 Apresentação da disciplina Definição da dinâmica do curso Iniciar os treinamentos (git, ágil, documentos)</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 0 - Aula 2 Ciclo de projeto Apresentação dos Projetos Aula: Revisão de Git https://education.github.com/git-cheat-sheet-education.pdf</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 01 - Aula 01 Planejamento Sprint 1 Definição dos projetos Iniciar a definição de escopo do projeto (Roadmap, documento de visão, EAP, TAP) - Estudar documento de arquitetura</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 01 - Aula 02 Modelos de processo Métodos ágeis Planejamento ágil Material assincrono: https://youtu.be/OzTGRO7UGyY Material assincrono: https://youtu.be/WiRwKm9M5w8</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 02 - Aula 01 Planejamento Sprint 02  Scrum/Kanban/spotify Papéis, artefatos, rituais Documentos: planning sprint/review sprint/issues Revisar escopo projeto, iniciar documento de Arquitetura, escolha tecnológica. Treinamento papéis, Aula assincrona: https://youtu.be/NoGhC1LaaAE https://youtu.be/Q3MxVo9zdvU</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 02 - Aula 02 Requisitos ágeis (Épicos, features, História de usuário, task, bugs) Artefatos: EAP, Documento de Visão, Backlog de produto, Backlog da sprint, documento de requisitos funcionais/não funcionais Treinamento: uso do zenhub Slide da aula: https://docs.google.com/presentation/d/1P2-Odi4s-IZ2-OGN9Xqcb5ngqczZDBszqi4w8swawhE/edit?usp=sharing Material complementar (Design com olhar disruptivo): https://youtu.be/vlbB0xYRulQ</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 03 aula 01 Show me the code Grupos apresentarem documentação</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 03 - Aula 02 Arquitetura de software Components, Camadas, diagramas UMLs Documentos: documento de arquitetura, pipeline Material assíncrono: https://youtu.be/oCjZNteAvg0 https://youtu.be/RCnmxKZjIQM  Material de estudo: https://martinfowler.com/architecture/</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 04 - Aula 01 Controle de versão e desenvolvimento colaborativo Gitflow https://about.gitlab.com/images/press/git-cheat-sheet.pdf https://docs.gitlab.com/ee/topics/gitlab_flow.html</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 04 - Aula 02 Política de Branches - aprendendo o fluxo de colaboração - Pull request, merge request, revisão, papel mantenedor. https://github.com/fga-eps-mds/Qualifying-Software-Engineers-Undergraduates-in-DevOps/issues/24</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 05 - Aula 01 Papéis ágeis - Scrum master Produtividade, métricas ágeis (retrospectiva, burndown, velocity, quadro de conhecimento, health check), maturidade das práticas (comunicação nas issues/PRs, rituais time box, pareamento)</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 05 - aula 02 Controle de Versão e Integração Contínua Isolamento de ambiente Aula Assíncrona:  https://www.youtube.com/watch?v=-Vui7mdYkgk&amp;t=1920s https://www.youtube.com/watch?v=FBrUzyKviJw</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Início Sprint 06 Feriado</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 06 - aula 02 Entrega Release O que é release - Release Train Release notes - https://github.com/RocketChat/Rocket.Chat/releases/tag/4.5.0 Material de Apoio - https://www.thoughtworks.com/en-br/radar/techniques/release-train https://www.scaledagileframework.com/agile-release-train/</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Release 01 Vídeo por projeto (Máx 4 minutos) Vídeo por squad (Max 4 minutos)</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 06 - aula 02 Soft Skills - agilista - agile brazil Slides - https://drive.google.com/file/d/1L01HuKcFPueg6wPwlPdCHgPWN8MQe7nk/view?usp=sharing</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 07 - aula 01 Síncrona - 10 min Início Sprint</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 07 - aula 02 Extreme Programming (XP) O que é? Práticas (programação pareada, testes automatizados, testes unitários, integração) Slides: https://www.slideshare.net/hotpop/introduo-programao-extrema-extreme-programming-xp</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 08 -Aula 01 Início Sprint</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 08 - Aula 02 Testes Testes unitários Testes integração Teste aceitação Testes automatizados práticas de testes - TDD + pair programming Slides: https://www.slideshare.net/hotpop/introduo-qualidade-e-testes-geis-de-software Git colaborativo práticas de  Gerência de Configuração https://www.slideshare.net/hotpop/gerncia-de-configurao-gil Material complementar: Pytest - https://medium.com/assertqualityassurance/tutorial-de-pytest-para-iniciantes-cbdd81c6d761 https://github.com/pluralsight/intro-to-pytest</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 09 - Aula 01 Síncrona - Avisos Planning - trabalho dos grupos</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 09 - Aula 02 Qualidade de software Qualidade estática de software Clean Code/SOLID Code climate, LINT Slides:  Revisão de Codigo/Code Review: https://github.com/thamara/thamara/blob/7111f8907f2f2737902be4e60d7dc7f56e5d1bcc/presentations/2020-11-19%20Shes%20Tech%20-%20Code%20Review/Revisão%20de%20Código.pdf Dicas: https://github.com/MunGell/awesome-for-beginners</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 10 - Aula 01 Síncrona - Avisos Início Sprint</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 10 - Aula 02 Pipeline de Integração Stages Build automatizada Testes automatizados qualidade de software deploy</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 11 - Aula 01 Síncrona - Avisos Início Sprint</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Sprint 11 - aula 02 Aula: Licenças de software livre Copyright, patentes e aspectos legais Outros modelos de processo Cascata / RUP</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Sprint 12 - aula 01 Início Sprint</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Feriado</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td>Release 02 - MVP - Poc</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Retrospectiva Disciplina</td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Terça-feira</td><td></td></tr>
+<tr><td style="text-align: center"></td><td style="text-align: center">Quinta-feira</td><td>Entrega notas final - revisão</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="posts"><a class="header" href="#posts">Posts</a></h1>
+<p>Essa seção é destinada aos blog post feitos pelos alunos</p>
+<h1 id="como-publicar-um-post"><a class="header" href="#como-publicar-um-post">Como publicar um post</a></h1>
+<ul>
+<li>Faça um fork do repositório</li>
+<li>Crie um arquivo markdown na pasta post</li>
+<li>Insira seu conteudo no arquivo</li>
+<li>adicione o seu blopost ao summary (SUMMARY.MD) do projeto (na pasta ./src)</li>
+<li>Execute a pagina (comando <code>mdbook serve</code>)</li>
+<li>Teste localmente</li>
+<li>Abra um pull request</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="metodologia-scrum"><a class="header" href="#metodologia-scrum">Metodologia Scrum</a></h1>
+<pre><code>				            Feito por Sabrina Berno- Matrícula 211029586
+</code></pre>
+<p>Segundo o livro <em>Scrum: A arte de fazer o dobro do trabalho na metade do tempo</em>, as equipes Scrum que trabalham bem conseguem obter o que chamamos de “hiper produtividade”. Costumamos ver uma melhora entre 300% e 400% na produtividade entre as que executam bem o Scrum. As que melhor se desenvolvem atingem um aumento de até 800% na produtividade, e repetem o mesmo sucesso várias vezes. Além disso, elas também conseguem mais que dobrar a qualidade do trabalho.</p>
+<h2 id="o-que-é-o-scrum"><a class="header" href="#o-que-é-o-scrum">O que é o Scrum?</a></h2>
+<p>O Scrum é um framework de gerenciamento que permite que as equipes se auto-organizem e trabalhem em conjunto para alcançar um objetivo comum. Essa estrutura descreve um conjunto de reuniões, ferramentas e funções que possibilitam uma entrega eficiente de projetos. Além disso, as equipes de software usam o Scrum para solucionar problemas complexos de maneira econômica e sustentável. Essa metodologia ágil tem os seguintes pilares:</p>
+<p>→ <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>Transparência</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+<p>Esse pilar está relacionado à visibilidade completa daquilo que está acontecendo no momento. O objetivo da transparência é o aprimoramento da equipe, uma vez que a cada membro da equipe sabe o que as pessoas estão fazendo, quem está ajudando, que está atrapalhando, quem torna a equipe ótima, quem dificulta o trabalho.</p>
+<p>→ <strong><strong><strong><strong><strong><strong><strong><strong>Inspeção</strong></strong></strong></strong></strong></strong></strong></strong></p>
+<p>Os usuários Scrum devem, frequentemente, inspecionar os artefatos Scrum e o progresso em direção a detectar variações. Nas revisões, verifique se ainda deveriam fazer aquilo e como pode fazê-lo melhor</p>
+<p>→ <strong><strong><strong><strong><strong><strong><strong><strong><strong>Adaptação</strong></strong></strong></strong></strong></strong></strong></strong></strong></p>
+<p>O Scrum funciona com a definição de objetivos sequenciais que devem ser concluídos em um período definido. Esse pilar está alinhado com os outros dois, já que a transparência e a inspeção abre precedentes para o Time Scrum realizar ajustes necessários</p>
+<h2 id="como-é-o-time-no-scrum"><a class="header" href="#como-é-o-time-no-scrum">Como é o Time no Scrum?</a></h2>
+<p>O time do framework Scrum é composto pelo Product Owner, Scrum Master e o Time de Desenvolvimento. Esse modelo de time é projetado para aperfeiçoar a flexibilidade, criatividade e produtividade.</p>
+<h3 id="product-owner"><a class="header" href="#product-owner">Product Owner</a></h3>
+<p>O papel do Product Owner é maximizar o valor do produto e do trabalho do Time de Desenvolvimento, e a forma de fazer isso pode variar amplamente entre organizações, times Scrum e indivíduos. O Product Owner é a única pessoa responsável por gerenciar o Backlog do Produto e fornecer feedback do cliente à equipe em cada Sprint.</p>
+<p>O Product Owner é uma pessoa, não um comitê. Embora possa representar o desejo de um comitê no Backlog do Produto, qualquer pessoa que deseje alterar as prioridades dos itens do Backlog deve convencer o Product Owner.</p>
+<h3 id="scrum-master"><a class="header" href="#scrum-master">Scrum Master</a></h3>
+<p>É responsável por garantir que o Scrum seja entendido e aplicado pelo Time Scrum, conseguindo aderir a teoria, prática e regras da metodologia. </p>
+<p>O Scrum Master trabalha com o Product Owner encontrando técnicas para o gerenciamento efetivo do Backlog do Produto, compreender a longo prazo o planejamento do Produto no ambiente empírico e comunicar a visão, objetivo e itens do Backlog do Produto para o Time de Desenvolvimento. </p>
+<p>O Scrum Master trabalha com o Time de Desenvolvimento treinando-os em autogerenciamento e interdisciplinaridade; ensinando e liderando na criação de produtos de alto valor e removendo impedimentos para o progresso do projeto. </p>
+<h3 id="time-de-desenvolvimento"><a class="header" href="#time-de-desenvolvimento">Time de Desenvolvimento</a></h3>
+<p>O objetivo do Time de Desenvolvimento é entregar uma versão usável que possa potencialmente incrementar o produto &quot;Pronto&quot; ao final de cada Sprint. Esses times são compostos por profissionais multifuncionais e auto-organizados que possuem todas as habilidades necessárias para criar o incremento do produto. Ao contrário de outros times, os times de Scrum não possuem sub-times dedicados a áreas específicas, como teste ou análise de negócios.</p>
+<p>O tamanho ideal do Time de Desenvolvimento é aquele que é grande o suficiente para concluir uma parcela significativa do trabalho dentro dos limites da Sprint, mas pequeno o suficiente para manter a agilidade. É importante ressaltar que a contagem de membros não inclui o Product Owner e o Scrum Master, a menos que eles também executem o trabalho do Backlog da Sprint.</p>
+<h2 id="quais-são-os-rituais-do-scrum"><a class="header" href="#quais-são-os-rituais-do-scrum">Quais são os rituais do Scrum?</a></h2>
+<p>Eventos prescritos são usados no Scrum para criar uma rotina e minimizar a necessidade de reuniões não definidas no Scrum. Todos os eventos são eventos <em>time boxed</em>, ou seja, todo evento tem uma duração máxima, que sua duração é fixada e não pode ser alterada quando o rito começa. </p>
+<h3 id="sprint"><a class="header" href="#sprint">Sprint</a></h3>
+<p>As Sprints, que são compostas por uma série de tarefas que devem ser concluídas dentro de um prazo pré-determinado, variando de 1 a 4 semanas no Scrum, incluem uma reunião de planejamento da Sprint, reuniões diárias, trabalho de desenvolvimento, revisão da Sprint e retrospectiva da Sprint. Cada Sprint é equivalente a um projeto com duração de no máximo um mês, durante o qual algo específico é construído. Cada Sprint possui uma definição clara do que deve ser construído, um plano flexível para orientar a construção, o trabalho e o resultado do produto.</p>
+<h3 id="reunião-de-planejamento-da-sprint"><a class="header" href="#reunião-de-planejamento-da-sprint">Reunião de Planejamento da Sprint</a></h3>
+<p>O trabalho a ser realizado na Sprint é definido na reunião de planejamento da Sprint. Este plano é criado com o trabalho colaborativo de todo o Time Scrum.</p>
+<p>Reunião de planejamento da Sprint possui um time-box com no máximo oito horas para uma Sprint de um mês de duração. Para sprints menores, a duração máxima é proporcional à essa. </p>
+<p>Durante a reunião de planejamento da Sprint é definido a meta da Sprint, um objetivo definido para a Sprint que pode ser satisfeito através da implementação do Backlog do Produto. Este fornece uma direção para o Time de Desenvolvimento sobre o porquê de estar construindo o incremento.</p>
+<h3 id="reunião-diária"><a class="header" href="#reunião-diária">Reunião Diária</a></h3>
+<p>A Reunião Diária do Scrum é um evento com tempo definido de 15 minutos em que o Time de Desenvolvimento se reúne para sincronizar suas atividades e criar um plano para as próximas 24 horas. Essa reunião tem como objetivo inspecionar o trabalho desde a última Reunião Diária e prever o trabalho que deve ser realizado antes da próxima Reunião Diária.</p>
+<p>Cada membro da equipe, deve responder três perguntas: o que fez desde a ultima reunião diária, o que fará no dia para bater a meta da sprint e se enxerga algum obstáculo no andamento da Sprint.</p>
+<p>As reuniões diárias são essenciais para inspecionar se o progresso tende em direção ao objetivo da Sprint e em completar o Backlog da Sprint. Elas melhoram as comunicações, eliminam outras reuniões, identificam e removem impedimentos para o desenvolvimento, destacam e promovem rápidas tomadas de decisão, e melhoram o nível de conhecimento do Time de Desenvolvimento. Esta é uma reunião essencial para inspeção e adaptação.</p>
+<h3 id="revisão-da-sprint"><a class="header" href="#revisão-da-sprint">Revisão da Sprint</a></h3>
+<p>Seu principal objetivo da Sprint Review é validar as entregas da equipe e verificar se os critérios estabelecidos no planejamento foram executados. É o momento de coletar os feedbacks do que a equipe construiu. </p>
+<p>A revisão da sprint é uma reunião time-boxed de 4 horas de duração para uma Sprint de um mês, sendo proporcional para Sprints menores. Além disso, seu resultado é um Backlog do Produto revisado que define o provável Backlog do Produto para a próxima Sprint.</p>
+<h3 id="retrospectiva-da-sprint"><a class="header" href="#retrospectiva-da-sprint">Retrospectiva da Sprint</a></h3>
+<p>A Retrospectiva da Sprint é uma oportunidade para o Time Scrum realizar uma auto-inspeção e criar um plano para melhorias a serem aplicadas na próxima Sprint. Esse evento ocorre após a Revisão da Sprint e antes da reunião de planejamento da próxima Sprint.</p>
+<p>Esta é uma reunião time-boxed de três horas para uma Sprint de um mês, sendo proporcional para Sprints menores.</p>
+<h2 id="artefatos-do-scrum"><a class="header" href="#artefatos-do-scrum">Artefatos do Scrum</a></h2>
+<p>Artefatos de Scrum ágil são informações que as equipes Scrum e as partes interessadas usam para detalhar o produto que está sendo desenvolvido, as ações para a produção dele e as ações realizadas durante o projeto</p>
+<h3 id="backlog-do-produto"><a class="header" href="#backlog-do-produto">Backlog do Produto</a></h3>
+<p>O Backlog do Produto consiste na lista de atividades necessárias para a criação de um projeto. Esse documento contém todos os passos que a equipe deve seguir para entregar o produto final desejado pelo cliente ao final do backlog.</p>
+<p>O Backlog do Produto é um documento dinâmico, que está em constante mudança para identificar as necessidades do produto e torná-lo mais apropriado, competitivo e útil.</p>
+<p>Essa lista contém todas as características, funções, requisitos, melhorias e correções que devem ser feitas nas futuras versões do produto. Os itens do Backlog do Produto incluem atributos como descrição, ordem, estimativa e valor.</p>
+<h3 id="backlog-da-sprint"><a class="header" href="#backlog-da-sprint">Backlog da Sprint</a></h3>
+<p>O Backlog da Sprint é um conjunto de itens do Backlog do Produto selecionados para a Sprint  (representado na forma de um Quadro de Tarefas), juntamente com o plano para entregar o incremento pronto e atingir a Meta da Sprint</p>
+<h3 id="incremento"><a class="header" href="#incremento">Incremento</a></h3>
+<p>O incremento é a soma de todos os itens do Backlog do Produto completados durante a Sprint e o valor dos incrementos de todas as Sprints anteriores.</p>
+<p>A cada iteração de desenvolvimento o objetivo do time deve ser gerar um Incremento de software potencialmente entregável, cabendo ao Product Owner decidir por colocá-lo em produção ou não.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="aprendizados-para-aprender-a-aprender-e-aprender-a-fazer"><a class="header" href="#aprendizados-para-aprender-a-aprender-e-aprender-a-fazer">Aprendizados para &quot;aprender a aprender e aprender a fazer&quot;</a></h1>
+<h4 id="jornada-do-squad-2--boto"><a class="header" href="#jornada-do-squad-2--boto">Jornada do Squad 2- BOTO</a></h4>
+<pre><code>					By Mylena Angélica- matrícula 211029497
+</code></pre>
+<p>Aprendizados para “aprender a aprender e aprender a fazer” consiste em uma metodologia chamada de “Experience Learning” e tem muita relação com o aprendizado de software. </p>
+<p><strong>Quer saber o porquê?</strong></p>
+<p>O aprendizado é coisa séria, aprender sobre software, para um engenheiro que tem como principal ferramenta o próprio software, então, é mais que sério. </p>
+<p>Para que você entenda um pouco mais sobre essa metodologia, vou contextualizar.</p>
+<p>A metodologia  tem como foco a aprendizagem como experiência. Veja só que bacana! Ela proporciona um ambiente no qual o aluno consegue controlar seu autodesenvolvimento para ir mais no nosso contexto, é centrada no usuário, ou seja, nós futuros engenheiros.</p>
+<p>Bem e o que isso tem a ver com a disciplina Métodos de Desenvolvimento de Software- MDS. </p>
+<p><img src="https://media.tenor.com/OQBW68iKHDEAAAAC/saber-duvida.gif" alt="duvida" /></p>
+<p>Continue a ler o post e no final, responda a seguinte pergunta:</p>
+<p><strong>A metodologia Experience Learning  tem a ver com o que vamos conhecer ao longo deste post?</strong></p>
+<h2 id="contextualizando"><a class="header" href="#contextualizando">Contextualizando</a></h2>
+<p>A disciplina de Métodos de Desenvolvimento de Software, do curso  Engenharia de Software, da Universidade de Brasília, ministrado pela Professora Doutora Carla Rocha, vai além do conhecimento teórico e ensina aos alunos a  lidar com situações que serão importantes para sua vida profissional. 
+Ela é considerada, pela comunidade acadêmica, essencial na grade horária do curso, pois apresenta conteúdos, dicas, metodologias, dentre outras, para quem quer se desenvolver na área de software.</p>
+<p><strong>Sabe por quê?</strong></p>
+<p>O que você adquirir durante a disciplina, com certeza irá levar para o resto da sua “vida” de desenvolvedor (a). 
+Lembre-se que o seu futuro depende do seu conhecimento, assim compartilho  <strong>4 tópicos fundamentais</strong>  na jornada do estudante que vai se aventurar no mundo dos códigos.</p>
+<p>Não deixe de ler, ficar de fora do conhecimento é estar a beira de um precipício. </p>
+<p><strong>Vamos comigo?</strong></p>
+<h2 id="metodologias-ágeis"><a class="header" href="#metodologias-ágeis">Metodologias ágeis</a></h2>
+<p>Para quem não sabe, as metodologias ágeis são as principais formas de planejamento e de desenvolvimento de software.  Vou listar os principais métodos ágeis que podem ser implementados em seus trabalhos.  São  eles: Scrum, Kanbam, XP e muitas outros.</p>
+<p>Mas, durante a disciplina, você irá observar que eles serão um ponto forte para o desenvolvimento do seu trabalho.  Você poderá escolher os que achar melhor ou até mesmo utilizar uma mistura dos métodos.  Tudo vai depender dos projetos e de suas  necessidades. Mas vamos voltar ao nosso papo inicial.</p>
+<p>A equipe Squad 2- BOTO, grupo que faço parte, com orgulho, pois somos interessados demais em metodologias ágeis, utilizou uma mistura de técnicas de Scrum e XP. E deu super certo! A experiência, já adianto, foi fantástica! 
+Está curioso?</p>
+<p>Vou compartilhar com você  como descobrimos esse mundo magnífico.</p>
+<p>Além dos conteúdos que obtivemos por meio de pesquisas, da curiosidade, realização de testes e pela experiência que fomos adquirindo na jornada , também, somamos os comentários de outros colegas, e as valiosas dicas da professora.
+A interação dela com o grupo foi essencial, pois tivemos a oportunidade de conhecer a fluxos de trabalho mais ágil, flexíveis e que se adaptam aos desejos e necessidades  de todo desenvolvedor.</p>
+<p>Então, vai a <strong>dica de ouro</strong>
+<img src="http://1.bp.blogspot.com/-lPNgiPYxrEE/VOy945vGXeI/AAAAAAAAMPo/Yz0aySQKVdo/s1600/Gold+8.gif" alt="bau-ouro" /></p>
+<p>Aproveite bem as aulas, estude, teste, crie, pesquise e busque desenvolver seu trabalho sem medo de errar, ao errar  se liga em ter a  rapidez para mudar.
+Desmitificando aí a cultura do erro! 
+Mas seja rápido e ágil para mudar a direção do seu projeto,  caso identifique falhas que possam comprometer o resultado. 
+Trabalhe em tão com o MVP, dá muito certo esse caminho. 
+Assim, você terá a oportunidade de aprofundar os seus conhecimentos e desenvolver habilidades que irão fazer você se destacar no mercado de trabalho.</p>
+<p><strong>Lembre-se que</strong>: ágil é um novo estilo de trabalho que está ganhando o mercado, não fique de fora dessa!!</p>
+<h2 id="show-me-the-code"><a class="header" href="#show-me-the-code">Show me the code</a></h2>
+<p><strong>Mas o que é isso?</strong></p>
+<p>Uma grande inovação na área de software.</p>
+<p>O Show me The Code, foi uma metodologia implementada pela professora da disciplina.
+Ela apresenta para nós essa ferramenta como forma de avaliar os avanços dos grupos ao longo do semestre.</p>
+<p>Bem na pegada de Shark Tank.
+Que funciona assim: os alunos são desafiados a mostrar o que foi desenvolvido, dentro de um limite de tempo, quer seja  os desafios, quer seja a organização e a estrutura do trabalho.</p>
+<p>Muita adrenalina! Mas superar o desafio, sem dúvida,  é recompensador. </p>
+<p>Veja aqui o que te falei no post acima! </p>
+<p>Esse é um novo estilo de trabalho que está ganhando o mercado.</p>
+<p>Assim, aconselho você a agarrar a oportunidade de desenvolver as tão faladas <strong>Soft skills</strong>.</p>
+<p>Se não sabe o conceito, sugiro que faça uma pesquisa, pois cabe também, a um bom desenvolvedor pesquisar os temas que não conhece. 
+Lembre-se que estamos na era do conhecimento! Não fique parado!</p>
+<p><strong>Mas espera aí:</strong> </p>
+<p>Tem mais dicas que quero compartilhar!</p>
+<p>Você deve estar pensando, nossa quantas descobertas!
+Com o conhecimento adquirido durante o curso, eu  aprendi a aprender e aprendi a fazer. 
+Muito legal, né?
+Continuando nossa conversa, neste post, eu ainda vou te contar as competências, habilidades e atitudes requeridas do profissional do século, vamos  lá?</p>
+<p>A <strong>criatividade,</strong> a <strong>comunicação eficaz</strong>, a <strong>persuasão</strong> , a <strong>influência</strong>,  a <strong>gestão do tempo</strong> e a capacidade de trabalhar sob <strong>pressão</strong> , pois uma coisa que está em alta, também, é a <strong>inteligência emocional.</strong></p>
+<p><img src="https://media0.giphy.com/media/bWUL1CuP72PeViNKt9/giphy.gif?cid=82a1493bgvjja47fvtst33px05qcyqk3yxbo5wtr1v8do4ma&amp;rid=giphy.gif&amp;ct=v" alt="presentation" /></p>
+<p>Então vale a pena se preparar e utilizar essa oportunidade para colocar em prática as soft skills e perceber de onde partir e onde você quer chegar.</p>
+<p>O autoconhecimento também, é fundamental. Anota aí!</p>
+<h2 id="github"><a class="header" href="#github">Github</a></h2>
+<p>Talvez, você já saiba, mas faço questão de <strong>frisar</strong> sobre  a importância desse software para a vida de um desenvolvedor.</p>
+<p>Com a docente, aprendi a  utilizar o máximo dessa ferramenta. Tirar o maior proveito possível, pois ele é um recurso é extraordinário.</p>
+<p>E se for agregado ao Zenhub, então, tudo pode ser feito.
+Você pode documentar no próprio Git, facilitando a organização e o fluxo de trabalho.</p>
+<p>Teste aí e veja se eu “não tenho razão”!</p>
+<p><img src="https://octodex.github.com/images/NUX_Octodex.gif" alt="enter image description here" /></p>
+<p>Olha só, além disso, aprendi a  utilizar issues, pull request, milestone, gitpages….</p>
+<p>Aconselho que você faça o mesmo, não perca um dia só de aula. </p>
+<p><strong>Está com dúvidas nesses nomes?</strong></p>
+<p>Não se preocupe, a professora  irá  apresentar todos eles!
+Mas caso meu nobre Jedi,  seja curioso, visite os repositórios de semestres anteriores e eu te garanto que você irá achar ótimas fontes de conhecimento.</p>
+<p><img src="https://media1.giphy.com/media/M6i12SBUEv09a/giphy.gif" alt="enter image description here" /></p>
+<p>Com isso,  você se tornará um desenvolvedor de verdade. Aqui não é só teoria, é muita prática. </p>
+<p>Então, vale a pena desenvolver <strong>hard skills</strong> e colocar no currículo a sua experiência com essa ferramenta tão fundamental. </p>
+<p><strong>Quer mais dicas?</strong></p>
+<h2 id="software-livre"><a class="header" href="#software-livre">Software livre</a></h2>
+<p>Pode apostar que vai se tornar o seu novo amor. 
+Softwares livres são os programas que podem ser copiados, aprimorados, estudados, por qualquer pessoa que tenha interesse, além de serem totalmente gratuitos.</p>
+<p>Alguns exemplos de softwares livres são:  o Linux, o LibreOffice, o Firefox e muitos outros que você irá conhecer durante sua trajetória em MDS. </p>
+<p>A nossa docente, explica, com uma linguagem espetacular sobre os software livres,  além disso, demonstra a sua importância, suas vantagens e ainda, conta bem contado,  o motivo de utilizar e o porquê é tão fundamental para a comunidade de software.</p>
+<p>Vale lembrar que:
+As ferramentas utilizadas durante a disciplina são open source ou são gratuitas para projetos de software livre.</p>
+<p>Olha só, não quero ser repetitiva, mas já sendo, vale a pena pesquisar, utilizar e desenvolver softwares desse tipo. Topa o desafio?</p>
+<p>Além disso, é algo tão <strong>bacana!</strong>
+Criar, compartilhar, renovar, disponibilizar, participar de comunidades de desenvolvedores, ajudar e também, ser ajudado. Eita, mundo novo!
+Deu para perceber que construir um projeto <strong>open source</strong>  é algo tão moderno, tão atual e tão gratificante que faz de qualquer engenheiro um “deus”.</p>
+<p>Sem exagerar, viu, mas é isso mesmo.</p>
+<p><img src="https://media.tenor.com/smOFBj4VakkAAAAM/spongebob-rainbow-open-source-opensource-linux.gif" alt="enter image description here" /></p>
+<p>Aproveite então cada palavra, cada ensinamento, cada experiência com a professora e seus colegas,  e já vá utilizando os conhecimentos adquiridos,.
+Planeje e desenvolva o seu primeiro software livre, e compartilhe, já que os projetos desenvolvidos são dessa categoria.</p>
+<p>E eu te garanto, depois da disciplina você irá ficar <strong>apaixonado</strong> por essa modalidade e irá querer contribuir com as comunidades.</p>
+<p>E colaborar também é uma coisa importante na vida de um profissional, <strong>juntos somos fortes!</strong> O que seria de nós sem o Stack Overflow 🤣🤣</p>
+<h1 id=""><a class="header" href="#"></a></h1>
+<p>Chegou a tão esperada hora de responder ao questionamento que postei lá no início do post. </p>
+<p>Vamos lá?</p>
+<p>Foi perguntado a você: <strong>A metodologia Experience Learning  tem a ver com o que vamos conhecer ao longo deste post?</strong></p>
+<p>Se você respondeu que sim, parabéns! Você entendeu muito bem o que significa  “aprender a aprender e aprender a fazer”  e é exatamente a metodologia que a professora utiliza. Você deve ter percebido que ela é centrada no usuário e por isso, torna o processo de aprendizagem mais fluido e interessante. É bom aprender assim, não é mesmo?</p>
+<p>Gostaria de falar muito mais, sobre os descobrimentos e conhecimentos que foram oportunizados pela disciplina de MDS, mas como tempo é dinheiro 💸💸abordei apenas alguns alguns dos tópicos que mais me marcaram.</p>
+<p>Então, espero que, você, possa aproveitar meu post.
+E não se esqueçam de curtir bastante esse caminho que se abre para você. 
+Bom curso e nos encontramos por aí, seja na Universidade, seja nas comunidades, compartilhando experiências,  criando novos sistemas e ajudando o mundo a se tornar melhor.</p>
+<p><img src="https://media.tenor.com/GBGsuUm1a50AAAAC/peace-out-bye.gif" alt="tchau" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="a-síndrome-do-herói"><a class="header" href="#a-síndrome-do-herói">A Síndrome do Herói</a></h1>
+<pre><code>					Feito por Sabrina Berno- Matrícula 211029586
+</code></pre>
+<p>Segundo o dicionário Aurélio, herói é uma pessoa conhecida pelos atos de bravura e nobreza. Em alguns casos, suas habilidades transcendem as de pessoas normais em força, agilidade e coragem. É dessa definição que surge a Síndrome de Herói ou Complexo do Herói.</p>
+<p>Antes de falar sobre essa síndrome, você consegue identificar uma pessoa que se comporta como nos exemplos abaixo?</p>
+<ul>
+<li>A pessoa fala “se você quer algo bem feito, faça você mesmo”. A pessoa acredita que tudo é urgente e importante e ninguém faz as coisas direito a não ser ela;</li>
+<li>A pessoa prefere se exaurir terminando algo hoje, do que deixar para amanhã. Ou seja, prefere salvar o dia em todas as situações, mesmo que isso significasse sua saúde mental e física;</li>
+<li>A pessoa se esforça excessivamente para se aparecer para os outros membros da equipe como o mais inteligente e o solucionador de todas as dúvidas. Com isso, acaba pegando mais responsabilidades para si, além de muitas vezes acaba pegando as responsabilidades de outras pessoas sem perceber;</li>
+<li>A pessoa se mostra 100% do tempo disponível e constantemente se oferece para ajudar outros colegas de  trabalho com seus projetos, pois duvida da capacidade da equipe em desenvolver as atividades sem seu auxílio.</li>
+</ul>
+<p>Esses comportamentos são típicos de pessoas com a Síndrome do Herói. O herói em uma equipe de trabalho / projeto é aquele profissional que quer resolver todas as crises de forma solitária, como se apenas ele tivesse os superpoderes para enfrentar essa missão. Geralmente os profissionais que se dedicam ao extremo na profissão e consomem uma abundante quantidade de horas extras são muito centralizadores e tendem a ser reconhecidos incorretamente como top performers. Ser o herói no trabalho pode parecer algo extremamente gratificante, já que quem não gostaria de ter em sua equipe alguém que abrace todos os problemas e não os largue até resolver? Porém, analisando racionalmente, ela pode ser prejudicial tanto para a pessoa, o desenvolvedor quanto para o andamento do projeto e do negócio. Estes profissionais geram problemas ocultos que podem minar a produtividade da equipe. Eles trazem resultados na solução de problemas, porém, também, geram impactos negativos em diversas as direções.</p>
+<p>Dessa forma, quando uma equipe contém um herói, os outros companheiros de equipe podem ter dois comportamentos diferentes: eles podem pensar que o herói fará todo o trabalho duro, então eles podem parar de trabalhar tanto quanto antes e apenas lidar com as tarefas fáceis ou eles podem começar a trabalhar horas extras para tentar chegar ao mesmo nível de vício em trabalho do herói, para que sua imagem não seja borrada pelo brilho do herói. De qualquer maneira, sua equipe será afetada de uma maneira ruim. Pode parecer bom no começo, já que as coisas podem ser feitas mais rapidamente no início, mas depois sua produtividade e qualidade cairão novamente e sua equipe logo ficará sobrecarregada.</p>
+<p>Observamos uma cultura de super-heróis nas empresas ou times quando, nas reuniões, os líderes elogiam pessoas e equipes que trabalham horas extras ou lidam com problemas urgentes como se fossem heróis. No entanto, em uma equipe de trabalho ou de projeto, devemos valorizar aqueles que trabalham com inteligência, excelência e ajudam no desenvolvimento de outros e não incentivar comportamentos prejudiciais à saúde.</p>
+<h2 id="como-identificar-uma-pessoa-com-a-síndrome-do-herói"><a class="header" href="#como-identificar-uma-pessoa-com-a-síndrome-do-herói">Como identificar uma pessoa com a Síndrome do Herói?</a></h2>
+<h4 id="1-vício-ser-reconhecido-e-ser-o-centro-das-atenções"><a class="header" href="#1-vício-ser-reconhecido-e-ser-o-centro-das-atenções">1) Vício ser reconhecido e ser o centro das atenções</a></h4>
+<p>O vício em reconhecimento e o desejo de ser o centro das atenções são duas tendências cada vez mais comuns dentro das equipes de trabalho / programação. As pessoas que se sentem viciadas em reconhecimento podem fazer tudo o que puderem para chamar a atenção de outras pessoas, mesmo que isso prejudique suas relações pessoais. Além disso, essas pessoas podem se tornar obcecadas por elogios, promoções e reconhecimento público de seu desempenho, o que pode resultar em comportamentos destrutivos, como a competição com colegas, a falta de colaboração e o acúmulo tanto de atividades delegadas para você quanto de atribuições que a pessoa pegou dos seus colegas. </p>
+<h4 id="2-não-acreditar-nas-habilidades-do-seu-time"><a class="header" href="#2-não-acreditar-nas-habilidades-do-seu-time">2) Não acreditar nas habilidades do seu time</a></h4>
+<p>É igualmente comum que o próprio herói tente assumir todo o trabalho extra voluntariamente porque não confia na equipe. Isso também não é culpa da equipe, mas uma falsa mentalidade de que o herói é o único que pode fazer o trabalho corretamente. Consequentemente, isso atrapalha o desenvolvimento individual de cada membro, já que eles não conseguem trabalhar e realizar suas demandas de forma efetiva. Para melhorar isso, a pessoa deve confiar nos outros para ter a mesma ética de trabalho e valores que ela tem. </p>
+<h4 id="3-tentar-ser-tudo-para-todo-mundo"><a class="header" href="#3-tentar-ser-tudo-para-todo-mundo">3) Tentar ser tudo para todo mundo</a></h4>
+<p>Este é talvez o sinal mais óbvio de que você está começando a sofrer do complexo do herói. As pessoas que querem ajudar todo mundo o tempo todo no trabalho são geralmente vistas como pessoas generosas e colaborativas, uma vez que não sabem dizer “não” e entender seus próprios limites. No entanto, em excesso, esse comportamento pode ter consequências negativas. Quando alguém tenta ajudar a todos, sempre, eles correm o risco de se sobrecarregarem, o que pode afetar negativamente sua saúde e bem-estar. Além disso, esse comportamento pode ser mal interpretado pelos outros, especialmente se as pessoas não estiverem cientes de que essa pessoa tem limites</p>
+<h4 id="4-trabalhar-uma-quantidade-excessiva-de-horas"><a class="header" href="#4-trabalhar-uma-quantidade-excessiva-de-horas">4) Trabalhar uma quantidade excessiva de horas</a></h4>
+<p>O mundo corporativo é feito, muitas vezes, de indivíduos motivados pela alta competitividade ou ainda alguma necessidade pessoal de provar algo a alguém, ou a si mesmo, que acabam se tornando viciados no trabalho para atingir seus objetivos. Ninguém, ao planejar um projeto, planeja que um programador trabalhe 12 horas por dia. Então, se isso acontece em um time é por que você provavelmente não previu bem o esforço e o tempo necessário para concluir o projeto. </p>
+<h4 id="5-líder-com-má-gestão"><a class="header" href="#5-líder-com-má-gestão">5) Líder com má gestão</a></h4>
+<p>No caso de um líder, assumir muitas responsabilidades pode ser ainda mais prejudicial, pois ele tem a responsabilidade de conduzir uma equipe ou uma organização. Quando um líder está sobrecarregado, pode ter dificuldade em tomar decisões eficazes, comunicar-se de forma clara e inspirar confiança em sua equipe. Além disso, um líder que não está cuidando de sua saúde e bem-estar pode transmitir uma mensagem negativa e pouco motivadora para sua equipe. Ademais, os líderes com complexo de herói são tomadores de decisão em vez de catalisadores, treinadores ou facilitadores. Por isso, é importante que um líder saiba delegar tarefas e responsabilidades, de equilibrar suas obrigações com sua saúde e bem-estar pessoal e ter a inteligência de passar seus conhecimentos para o restante do time. Isso ajudará a garantir o sucesso dele próprio e de sua equipe.</p>
+<h3 id="como-lidar-com-um-herói-dentro-da-equipe"><a class="header" href="#como-lidar-com-um-herói-dentro-da-equipe">Como lidar com um herói dentro da equipe?</a></h3>
+<p>Primeiro, digamos que você já percebeu que uma pessoa em sua equipe é um herói. O que fazer sobre isso? Bom, a primeira coisa é conversar com o gerente, ou a pessoa que reconhece o esforço, e mostrar a ele o problema. Explique como isso afeta sua equipe e tente encorajar o gerente a parar de recompensar o herói por seu vício em trabalho e realmente proibir horas extras desnecessárias. </p>
+<p>Caso essa situação ocorra com o seu líder e conversa com ele não resolveu, fale com o líder direto dele. Já se isso acontecer com a disciplina de Métodos de Desenvolvimento de Software, fale com o professor(a), pois ele(a) saberá te direcionar melhor e lidar com este episódio. </p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
